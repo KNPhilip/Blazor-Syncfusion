@@ -7,12 +7,13 @@ namespace BlazorSyncfusion.Shared
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
+        public string FullName { get => FirstName + "" + LastName; }
         public string NickName { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Mail { get; set; } = string.Empty;
         public string? Phone { get; set; }
         public string School { get; set; } = string.Empty;
-        public bool IsTeacher { get; set; }
+        public bool IsEmployee { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime DateHired { get; set; } = DateTime.Now;
         public DateTime? DateLastUpdated { get; set; }

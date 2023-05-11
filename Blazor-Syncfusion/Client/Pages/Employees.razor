@@ -1,0 +1,34 @@
+﻿@page "/staff"
+@inject NavigationManager navigationManager;
+
+<h3>Staff</h3>
+
+<SfGrid DataSource="BlazorSyncfusion.Shared.DummyData.GridData" AllowFiltering="true" Toolbar="@(new List<string>() { "Søg" })">
+    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.CheckBox"></GridFilterSettings>
+    <GridColumns>
+        <GridColumn Field="FullName" HeaderText="Navn"></GridColumn>
+        <GridColumn Field="Title" HeaderText="Stilling"></GridColumn>
+        <GridColumn Field="Mail" HeaderText="Mail"></GridColumn>
+        <GridColumn Field="School" HeaderText="Afdeling"></GridColumn>
+        <GridColumn Field="Phone" HeaderText="Tlf."></GridColumn>
+        <GridColumn Width="60px">
+            <Template>
+                @{
+                    var employee = context as BlazorSyncfusion.Shared.Employee;
+                    <SfButton CssClass="e-inherit"
+                        IconCss="e-icon e-edit"
+                        OnClick="(() => EditEmployee(employee!.Id))"
+                    />
+                }
+            </Template>
+        </GridColumn>
+    </GridColumns>
+</SfGrid>
+
+@code {
+
+    void EditEmployee(int id)
+    {
+        navigationManager.NavigateTo($"staff/edit/{id}");
+    }
+}

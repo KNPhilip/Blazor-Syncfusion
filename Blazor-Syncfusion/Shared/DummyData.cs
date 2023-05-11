@@ -13,7 +13,7 @@
                 Title = "Lærer",
                 Mail = "keso@aspit.dk",
                 School = "AspIT Trekanten",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             },
             new Employee
@@ -25,7 +25,7 @@
                 Title = "Lærer",
                 Mail = "mara@aspit.dk",
                 School = "AspIT Trekanten",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             },
             new Employee
@@ -37,7 +37,7 @@
                 Title = "Lærer",
                 Mail = "degr@aspin.dk",
                 School = "AspIN",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             },
             new Employee
@@ -49,7 +49,7 @@
                 Title = "Lærer",
                 Mail = "jape@aspin.dk",
                 School = "AspIN",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             },
             new Employee
@@ -62,7 +62,7 @@
                 Mail = "jema@aspit.dk",
                 Phone = "+45 72 16 28 56",
                 School = "AspIT Trekanten",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             },
             new Employee
@@ -75,7 +75,7 @@
                 Mail = "hens@aspit.dk",
                 Phone = "+45 72 16 26 85",
                 School = "AspIT Trekanten",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             },
             new Employee
@@ -88,7 +88,7 @@
                 Mail = "oje@aspit.dk",
                 Phone = "+45 72 16 27 99",
                 School = "AspIT Trekanten",
-                IsTeacher = true,
+                IsEmployee = true,
                 BirthDate = new DateTime(1994, 03, 04)
             }
         };
