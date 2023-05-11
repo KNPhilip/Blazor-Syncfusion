@@ -2,16 +2,18 @@
 
 namespace BlazorSyncfusion.Shared
 {
-    public class Teacher
+    public class Employee
     {
         public int Id { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string NickName { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
         public string Mail { get; set; } = string.Empty;
+        public string? Phone { get; set; }
         public string School { get; set; } = string.Empty;
         public bool IsTeacher { get; set; }
-        public DateTime? BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public DateTime DateHired { get; set; } = DateTime.Now;
         public DateTime? DateLastUpdated { get; set; }
         public DateTime? DateFired { get; set; }

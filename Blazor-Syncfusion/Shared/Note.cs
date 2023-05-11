@@ -5,7 +5,7 @@
         public int Id { get; set; }
         public required string Text { get; set; }
         public int? TeacherId { get; set; }
-        public Teacher? Teacher { get; set; }
+        public Employee? Teacher { get; set; }
         public DateTime DateCreated { get; set; } = DateTime.Now;
     }
 }
