@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Blazor-Syncfusion.Shared.csproj" />
+    <ProjectReference Include="..\Shared\BlazorSyncfusion.Shared.csproj" />
   </ItemGroup>
 
 </Project>

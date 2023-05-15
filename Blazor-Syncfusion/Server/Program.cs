@@ -1,6 +1,5 @@
 using BlazorSyncfusion.Server.Data;
 using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.EntityFrameworkCore.Design;
 
 var builder = WebApplication.CreateBuilder(args);
 
