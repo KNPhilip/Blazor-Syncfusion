@@ -1,0 +1,46 @@
+﻿@page "/staff"
+@using BlazorSyncfusion.Shared;
+@inject NavigationManager NavigationManager;
+@inject HttpClient Http;
+
+<h3>Staff</h3>
+
+<SfGrid DataSource="GridData" AllowFiltering="true" Toolbar="@(new List<string>() { "Søg" })">
+    <GridFilterSettings Type="Syncfusion.Blazor.Grids.FilterType.CheckBox"></GridFilterSettings>
+    <GridColumns>
+        <GridColumn Width="60">
+            <Template>
+                @{
+                    var employee = context as Employee;
+                    <SfButton CssClass="e-inherit"
+                          IconCss="e-icons e-edit"
+                          OnClick="@(() => EditEmployee(employee!.Id))"></SfButton>
+                }
+            </Template>
+        </GridColumn>
+        <GridColumn Field="FullName" HeaderText="Navn"></GridColumn>
+        <GridColumn Field="Title" HeaderText="Stilling"></GridColumn>
+        <GridColumn Field="Mail" HeaderText="Mail"></GridColumn>
+        <GridColumn Field="School" HeaderText="Afdeling"></GridColumn>
+        <GridColumn Field="Phone" HeaderText="Tlf."></GridColumn>
+    </GridColumns>
+</SfGrid>
+
+@code {
+    public List<Employee> GridData { get; set; } = new List<Employee>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await Http.GetFromJsonAsync<List<Employee>>("api/staff");
+        if (result is not null)
+        {
+            GridData = result;
+        }
+
+    }
+
+    void EditEmployee(int id)
+    {
+        NavigationManager.NavigateTo($"staff/edit/{id}");
+    }
+}
