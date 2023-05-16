@@ -1,0 +1,55 @@
+﻿@page "/staff/edit/{id:int}"
+@page "/staff/new"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@if (Id is not null)
+{
+    <h3>Rediger @employee.FullName (@employee.NickName)</h3>
+}
+else
+{
+    <h3>Opret en ny ansat</h3>
+}
+
+<main>
+    <EditForm Model="employee" OnValidSubmit="HandleSubmit">
+        <DataAnnotationsValidator  />
+        <SfTextBox CssClass="e-outline" class="small" Placeholder="Fornavn"
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.FirstName" />
+        <ValidationMessage For="(() => employee.FirstName)" />
+        <SfTextBox CssClass="e-outline" Placeholder="Efternavn"
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.LastName" />
+        <ValidationMessage For="(() => employee.LastName)" />
+        <SfTextBox CssClass="e-outline" Placeholder="Initialer"
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.NickName" />
+        <ValidationMessage For="(() => employee.NickName)" />
+        <SfTextBox CssClass="e-outline" Placeholder="Stilling"
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.Title" />
+        <ValidationMessage For="(() => employee.Mail)" />
+        <SfTextBox CssClass="e-outline" Placeholder="Mail"
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.Mail" />
+        <SfTextBox CssClass="e-outline" Placeholder="Telefon (Valgfri)"
+                   FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.Phone" />
+
+        <ValidationMessage For="(() => employee.BirthDate)" />
+        <SfDatePicker TValue="DateTime" Placeholder="Fødselsdato"
+                      FloatLabelType="@FloatLabelType.Auto" @bind-Value="employee.BirthDate"
+                      Format="MM/dd/yyyy" />
+
+        <hr />
+        <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Opret" type="submit" />
+    </EditForm>
+</main>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    public Employee employee { get; set; } = new Employee();
+
+    async Task HandleSubmit()
+    {
+
+    }
+}
