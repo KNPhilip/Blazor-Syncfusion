@@ -12,7 +12,7 @@ else
     <h3>Opret en ny ansat</h3>
 }
 
-<main>
+<div style="width: 550px;">
     <EditForm Model="employee" OnValidSubmit="HandleSubmit">
         <DataAnnotationsValidator  />
         <SfTextBox CssClass="e-outline" class="small" Placeholder="Fornavn"
@@ -38,17 +38,28 @@ else
                       Format="MM/dd/yyyy" />
 
         <hr />
-        @{
+        @if (Id is not null)
+        {
+            <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Redier" type="submit" />
+        }
+        else
+        {
             <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Opret" type="submit" />
         }
     </EditForm>
-</main>
+    <p>
+        <SfMessage Severity="MessageSeverity.Success" Visible="showSuccessMessage">Kollegaen blev oprettet!</SfMessage>
+        <SfMessage Severity="MessageSeverity.Error" Visible="showErrorMessage">Oops, noget gik galt..</SfMessage>
+    </p>
+</div>
 
 @code {
     [Parameter]
     public int? Id { get; set; }
 
     public Employee employee { get; set; } = new Employee();
+    bool showSuccessMessage = false;
+    bool showErrorMessage = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -79,7 +90,12 @@ else
             if (jsonResult is not null)
             {
                 employee = jsonResult;
+                showSuccessMessage = true;
             }
+        }
+        else
+        {
+            showErrorMessage = true;
         }
     }
 }

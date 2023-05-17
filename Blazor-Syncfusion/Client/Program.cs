@@ -13,6 +13,6 @@ builder.Services.AddHttpClient("Blazor_Syncfusion.ServerAPI", client => client.B
 builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("Blazor_Syncfusion.ServerAPI"));
 builder.Services.AddSyncfusionBlazor();
 
-Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(" *Your License key here* ");
+Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(" *Your license key here* ");
 
 await builder.Build().RunAsync();

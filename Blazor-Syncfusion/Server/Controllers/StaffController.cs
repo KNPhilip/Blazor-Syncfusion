@@ -3,6 +3,7 @@ using BlazorSyncfusion.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace BlazorSyncfusion.Server.Controllers
 {
@@ -18,7 +19,7 @@ namespace BlazorSyncfusion.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<string>> GetAllStaff()
+        public async Task<ActionResult<List<Employee>>> GetAllStaff()
         {
             return Ok(await _context.Employees
                 .Where(c => c.IsEmployee)
@@ -40,6 +41,7 @@ namespace BlazorSyncfusion.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Employee>> CreateStaff(Employee employee)
         {
+            employee.IsEmployee = true;
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
 
@@ -49,24 +51,41 @@ namespace BlazorSyncfusion.Server.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<string>> UpdateStaff(int id, Employee employee)
         {
-            var dbContact = await _context.Employees.FindAsync(id);
-            if (dbContact is null)
+            var dbStaff = await _context.Employees.FindAsync(id);
+            if (dbStaff is null)
             {
                 return NotFound("Staff not found.");
             }
 
-            dbContact.FirstName = employee.FirstName;
-            dbContact.LastName = employee.LastName;
-            dbContact.NickName = employee.NickName;
-            dbContact.Title = employee.Title;
-            dbContact.Mail = employee.Mail;
-            dbContact.Phone = employee.Phone ?? dbContact.Phone;
-            dbContact.BirthDate = employee.BirthDate;
-            dbContact.DateLastUpdated = DateTime.Now;
+            dbStaff.FirstName = employee.FirstName;
+            dbStaff.LastName = employee.LastName;
+            dbStaff.NickName = employee.NickName;
+            dbStaff.Title = employee.Title;
+            dbStaff.Mail = employee.Mail;
+            dbStaff.Phone = employee.Phone ?? dbStaff.Phone;
+            dbStaff.BirthDate = employee.BirthDate;
+            dbStaff.DateLastUpdated = DateTime.Now;
 
             await _context.SaveChangesAsync();
 
             return Ok(employee);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Employee>>> DeleteStaff(int id, Employee employee)
+        {
+            var dbStaff = await _context.Employees.FindAsync(id);
+            if(dbStaff is null)
+            {
+                return NotFound("Staff not found.");
+            }
+
+            dbStaff.IsEmployee = false;
+            dbStaff.DateFired = DateTime.Now;
+
+            await _context.SaveChangesAsync();
+
+            return await GetAllStaff();
         }
     }
 }
