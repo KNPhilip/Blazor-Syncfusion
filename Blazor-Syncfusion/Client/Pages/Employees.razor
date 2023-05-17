@@ -26,6 +26,10 @@
     </GridColumns>
 </SfGrid>
 
+<p>
+    <SfButton IsPrimary="true" Content="Opret ny ansat" OnClick="CreateEmployee" />
+</p>
+
 @code {
     public List<Employee> GridData { get; set; } = new List<Employee>();
 
@@ -42,5 +46,10 @@
     void EditEmployee(int id)
     {
         NavigationManager.NavigateTo($"staff/edit/{id}");
+    }
+
+    void CreateEmployee()
+    {
+        NavigationManager.NavigateTo($"staff/new");
     }
 }

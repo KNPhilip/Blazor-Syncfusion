@@ -38,7 +38,9 @@ else
                       Format="MM/dd/yyyy" />
 
         <hr />
-        <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Opret" type="submit" />
+        @{
+            <SfButton CssClass="e-primary" IconCss="e-icons e-save" Content="Opret" type="submit" />
+        }
     </EditForm>
 </main>
 
@@ -48,8 +50,36 @@ else
 
     public Employee employee { get; set; } = new Employee();
 
+    protected override async Task OnInitializedAsync()
+    {
+        if(Id is not null)
+        {
+            var result = await Http.GetAsync($"api/staff/{Id}");
+            if (result.IsSuccessStatusCode)
+            {
+                var jsonResult = await result.Content.ReadFromJsonAsync<Employee>();
+                if (jsonResult is not null)
+                    employee = jsonResult;
+            }
+            else
+            {
+                NavigationManager.NavigateTo("/staff/new");
+            }
+        }
+    }
+
     async Task HandleSubmit()
     {
+        HttpResponseMessage result;
+        result = Id != null ? await Http.PutAsJsonAsync($"api/staff/{employee.Id}", employee) : await Http.PostAsJsonAsync($"api/staff", employee);
 
+        if (result.IsSuccessStatusCode)
+        {
+            var jsonResult = await result.Content.ReadFromJsonAsync<Employee>();
+            if (jsonResult is not null)
+            {
+                employee = jsonResult;
+            }
+        }
     }
 }
