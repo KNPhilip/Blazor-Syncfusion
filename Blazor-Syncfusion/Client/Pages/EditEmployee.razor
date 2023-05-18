@@ -78,6 +78,16 @@ else
                 <SfCard>
                     <CardHeader Title="@note.DateCreated.ToString()"></CardHeader>
                     <CardContent Content="@note.Text"></CardContent>
+                    <CardFooter>
+                        <CardFooterContent>
+                            <SfButton
+                                Content="Slet"
+                                IsPrimary="true"
+                                OnClick="@(() => DeleteNote(note.Id))"
+                            >
+                            </SfButton>
+                        </CardFooterContent>
+                    </CardFooter>
                 </SfCard>
                 <br />
             }
@@ -146,7 +156,7 @@ else
 
     async Task DeleteNote(int noteId)
     {
-        var result = await Http.DeleteFromJsonAsync<List<Note>>($"api/notes{noteId}");
+        var result = await Http.DeleteFromJsonAsync<List<Note>>($"api/notes/{noteId}");
         if (result is not null)
             notes = result;
     }

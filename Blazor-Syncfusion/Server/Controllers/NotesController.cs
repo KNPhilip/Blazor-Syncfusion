@@ -48,7 +48,7 @@ namespace BlazorSyncfusion.Server.Controllers
                 .ToListAsync();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<ActionResult<List<Note>>> DeleteNote(int id)
         {
             var dbNote = await _context.Notes.FindAsync(id);
