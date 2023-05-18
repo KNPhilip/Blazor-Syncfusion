@@ -72,7 +72,7 @@ namespace BlazorSyncfusion.Server.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Employee>>> DeleteStaff(int id, Employee employee)
+        public async Task<ActionResult<List<Employee>>> DeleteStaff(int id)
         {
             var dbStaff = await _context.Employees.FindAsync(id);
             if(dbStaff is null)
@@ -81,6 +81,7 @@ namespace BlazorSyncfusion.Server.Controllers
             }
 
             dbStaff.IsEmployee = false;
+            dbStaff.DateLastUpdated = DateTime.Now;
             dbStaff.DateFired = DateTime.Now;
 
             await _context.SaveChangesAsync();
