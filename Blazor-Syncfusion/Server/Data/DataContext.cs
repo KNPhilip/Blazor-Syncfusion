@@ -110,8 +110,8 @@ namespace BlazorSyncfusion.Server.Data
                 );
 
             modelBuilder.Entity<Note>().HasData(
-                new Note { Id = 1, TeacherId = 5, Text = "ADHD child and very annoying." },
-                new Note { Id = 2, TeacherId = 1, Text = "funny." }
+                new Note { Id = 1, EmployeeId = 5, Text = "ADHD child and very annoying." },
+                new Note { Id = 2, EmployeeId = 1, Text = "funny." }
                 );
         }
 

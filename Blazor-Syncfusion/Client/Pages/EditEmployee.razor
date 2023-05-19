@@ -148,7 +148,7 @@ else
         if (Id is null)
             return;
 
-        newNote.TeacherId = Id;
+        newNote.EmployeeId = Id;
         var result = await Http.PostAsJsonAsync($"api/notes", newNote);
         if (result.IsSuccessStatusCode)
             await LoadNotes();

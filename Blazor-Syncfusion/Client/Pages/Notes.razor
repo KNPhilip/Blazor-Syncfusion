@@ -1,0 +1,40 @@
+﻿@page "/notes"
+@using BlazorSyncfusion.Shared
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<h3>Noter</h3>
+
+@foreach (var note in NoteList)
+{
+    <SfCard>
+        <CardHeader Title="@note.DateCreated.ToString()" />
+        <CardContent Content="@note.Text" />
+        <CardFooter>
+            <CardFooterContent>
+                @if (note.Employee is not null)
+                {
+                    <SfButton Content=@($"Vis {note.Employee.NickName}")
+                      IsPrimary="true"
+                      OnClick="(() => NavigateToEmployee(note.Employee.Id))"></SfButton>
+                }
+            </CardFooterContent>
+        </CardFooter>
+    </SfCard>
+}
+
+@code {
+    public List<Note> NoteList { get; set; } = new List<Note>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await Http.GetFromJsonAsync<List<Note>>("api/notes");
+        if (result is not null)
+            NoteList = result;
+    }
+
+    void NavigateToEmployee(int employeeId)
+    {
+        NavigationManager.NavigateTo($"staff/edit/{employeeId}");
+    }
+}

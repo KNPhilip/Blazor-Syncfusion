@@ -1,5 +1,6 @@
 ﻿using BlazorSyncfusion.Server.Data;
 using BlazorSyncfusion.Shared;
+using BlazorSyncfusion.Shared.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,19 +20,29 @@ namespace BlazorSyncfusion.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Note>>> GetAllNotes()
+        public async Task<ActionResult<List<NoteDto>>> GetAllNotes()
         {
-            return await _context.Notes
-                .Include(n => n.Teacher)
-                .OrderByDescending(n => n.DateCreated)
-                .ToListAsync();
+            var noteDto = await _context.Notes
+            .Include(n => n.Employee)
+            .OrderByDescending(n => n.DateCreated)
+            .Select(n => new NoteDto
+            {
+                Id = n.Id,
+                Text = n.Text,
+                DateCreated = n.DateCreated,
+                EmployeeId = n.Employee!.Id,
+                EmployeeNickName = n.Employee.NickName
+            })
+            .ToListAsync();
+
+            return noteDto;
         }
 
         [HttpGet("{employeeId}")]
         public async Task<ActionResult<List<Note>>> GetNotesFromEmployee(int employeeId)
         {
             return await _context.Notes
-                .Where(n => n.TeacherId == employeeId)
+                .Where(n => n.EmployeeId == employeeId)
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }
@@ -43,7 +54,7 @@ namespace BlazorSyncfusion.Server.Controllers
             await _context.SaveChangesAsync();
 
             return await _context.Notes
-                .Where(n => n.TeacherId == note.TeacherId)
+                .Where(n => n.EmployeeId == note.EmployeeId)
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }
@@ -61,7 +72,7 @@ namespace BlazorSyncfusion.Server.Controllers
             await _context.SaveChangesAsync();
 
             return await _context.Notes
-                .Where(n => n.TeacherId == dbNote.TeacherId)
+                .Where(n => n.EmployeeId == dbNote.EmployeeId)
                 .OrderByDescending(n => n.DateCreated)
                 .ToListAsync();
         }
