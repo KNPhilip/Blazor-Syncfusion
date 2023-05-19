@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Syncfusion.Blazor;
 using Mapster;
-using BlazorSyncfusion.Shared;
 using BlazorSyncfusion.Shared.Dtos;
+using BlazorSyncfusion.Shared.Entities;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");

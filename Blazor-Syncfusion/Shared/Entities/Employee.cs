@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlazorSyncfusion.Shared
+namespace BlazorSyncfusion.Shared.Entities
 {
     public class Employee
     {
@@ -18,7 +18,6 @@ namespace BlazorSyncfusion.Shared
         [Required(ErrorMessage = "Indtast venligst en mail.")]
         public string Mail { get; set; } = string.Empty;
         public string? Phone { get; set; }
-        public string School { get; set; } = string.Empty;
         public bool IsEmployee { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime DateHired { get; set; } = DateTime.Now;
@@ -26,5 +25,7 @@ namespace BlazorSyncfusion.Shared
         public DateTime? DateFired { get; set; }
         [JsonIgnore]
         public List<Note> Notes { get; set; } = new List<Note>();
+        public int? DepartmentId { get; set; }
+        public Department? Department { get; set; }
     }
 }
