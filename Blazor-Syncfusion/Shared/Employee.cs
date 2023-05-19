@@ -1,15 +1,21 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorSyncfusion.Shared
 {
     public class Employee
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Indtast venligst et fornavn.")]
         public string FirstName { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Indtast venligst et efternavn.")]
         public string LastName { get; set; } = string.Empty;
         public string FullName { get => FirstName + " " + LastName; }
+        [Required(ErrorMessage = "Indtast venligst initialerne (F.eks. JEMA)")]
         public string NickName { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Indsæt venligst en stilling.")]
         public string Title { get; set; } = string.Empty;
+        [Required(ErrorMessage = "Indtast venligst en mail.")]
         public string Mail { get; set; } = string.Empty;
         public string? Phone { get; set; }
         public string School { get; set; } = string.Empty;
