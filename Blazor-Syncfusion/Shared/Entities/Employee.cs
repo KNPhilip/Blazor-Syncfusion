@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BlazorSyncfusion.Shared.Entities;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
 namespace BlazorSyncfusion.Shared
@@ -24,6 +25,8 @@ namespace BlazorSyncfusion.Shared
         public DateTime DateHired { get; set; } = DateTime.Now;
         public DateTime? DateLastUpdated { get; set; }
         public DateTime? DateFired { get; set; }
+        public int DepartmentId { get; set; }
+        public Department? Department { get; set; }
         [JsonIgnore]
         public List<Note> Notes { get; set; } = new List<Note>();
     }
