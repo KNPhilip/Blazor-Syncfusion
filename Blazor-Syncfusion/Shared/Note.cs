@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace BlazorSyncfusion.Shared.Entities
+namespace BlazorSyncfusion.Shared
 {
     public class Note
     {

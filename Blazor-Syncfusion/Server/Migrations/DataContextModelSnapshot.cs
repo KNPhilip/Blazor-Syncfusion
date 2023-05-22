@@ -22,51 +22,7 @@ namespace BlazorSyncfusion.Server.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BlazorSyncfusion.Shared.Entities.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<double?>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double?>("Longtitude")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Department");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "AspIT Nordjylland"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "AspIT Østjylland"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "AspIT Trekanten"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "AspIN"
-                        });
-                });
-
-            modelBuilder.Entity("BlazorSyncfusion.Shared.Entities.Employee", b =>
+            modelBuilder.Entity("BlazorSyncfusion.Shared.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -85,9 +41,6 @@ namespace BlazorSyncfusion.Server.Migrations
 
                     b.Property<DateTime?>("DateLastUpdated")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("DepartmentId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -111,13 +64,15 @@ namespace BlazorSyncfusion.Server.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("School")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
 
@@ -126,99 +81,99 @@ namespace BlazorSyncfusion.Server.Migrations
                         {
                             Id = 1,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6336),
-                            DepartmentId = 1,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2436),
                             FirstName = "Kenneth",
                             IsEmployee = true,
                             LastName = "Hougaard Soerensen",
                             Mail = "keso@aspit.dk",
                             NickName = "KESO",
+                            School = "AspIT Trekanten",
                             Title = "Lærer"
                         },
                         new
                         {
                             Id = 2,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6383),
-                            DepartmentId = 1,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2484),
                             FirstName = "Mads",
                             IsEmployee = true,
                             LastName = "Mikkel Rasmussen",
                             Mail = "mara@aspit.dk",
                             NickName = "MARA",
+                            School = "AspIT Trekanten",
                             Title = "Lærer"
                         },
                         new
                         {
                             Id = 3,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6386),
-                            DepartmentId = 4,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2487),
                             FirstName = "Dea",
                             IsEmployee = true,
                             LastName = "Gram",
                             Mail = "degr@aspin.dk",
                             NickName = "DEGR",
+                            School = "AspIN",
                             Title = "Lærer"
                         },
                         new
                         {
                             Id = 4,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6388),
-                            DepartmentId = 4,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2490),
                             FirstName = "Jan",
                             IsEmployee = true,
                             LastName = "Lindgaard Pedersen",
                             Mail = "jape@aspin.dk",
                             NickName = "JAPE",
+                            School = "AspIN",
                             Title = "Lærer"
                         },
                         new
                         {
                             Id = 5,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6391),
-                            DepartmentId = 1,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2492),
                             FirstName = "Jesper",
                             IsEmployee = true,
                             LastName = "Lade Mathiesen",
                             Mail = "jema@aspit.dk",
                             NickName = "JEMA",
                             Phone = "+45 72 16 28 56",
+                            School = "AspIT Trekanten",
                             Title = "Specialpædagogisk vejleder"
                         },
                         new
                         {
                             Id = 6,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6394),
-                            DepartmentId = 1,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2531),
                             FirstName = "Henrik",
                             IsEmployee = true,
                             LastName = "Stephansen",
                             Mail = "hens@aspit.dk",
                             NickName = "HENS",
                             Phone = "+45 72 16 26 85",
+                            School = "AspIT Trekanten",
                             Title = "Praktik- og jobvejleder"
                         },
                         new
                         {
                             Id = 7,
                             BirthDate = new DateTime(1994, 3, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DateHired = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6396),
-                            DepartmentId = 1,
+                            DateHired = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2534),
                             FirstName = "Ole",
                             IsEmployee = true,
                             LastName = "Bay Jensen",
                             Mail = "oje@aspit.dk",
                             NickName = "OJE",
                             Phone = "+45 72 16 27 99",
+                            School = "AspIT Trekanten",
                             Title = "Uddannelseschef"
                         });
                 });
 
-            modelBuilder.Entity("BlazorSyncfusion.Shared.Entities.Note", b =>
+            modelBuilder.Entity("BlazorSyncfusion.Shared.Note", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,38 +201,29 @@ namespace BlazorSyncfusion.Server.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6526),
+                            DateCreated = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2667),
                             EmployeeId = 5,
                             Text = "ADHD child and very annoying."
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2023, 5, 19, 15, 28, 45, 374, DateTimeKind.Local).AddTicks(6530),
+                            DateCreated = new DateTime(2023, 5, 19, 13, 25, 54, 871, DateTimeKind.Local).AddTicks(2671),
                             EmployeeId = 1,
                             Text = "funny."
                         });
                 });
 
-            modelBuilder.Entity("BlazorSyncfusion.Shared.Entities.Employee", b =>
+            modelBuilder.Entity("BlazorSyncfusion.Shared.Note", b =>
                 {
-                    b.HasOne("BlazorSyncfusion.Shared.Entities.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId");
-
-                    b.Navigation("Department");
-                });
-
-            modelBuilder.Entity("BlazorSyncfusion.Shared.Entities.Note", b =>
-                {
-                    b.HasOne("BlazorSyncfusion.Shared.Entities.Employee", "Employee")
+                    b.HasOne("BlazorSyncfusion.Shared.Employee", "Employee")
                         .WithMany("Notes")
                         .HasForeignKey("EmployeeId");
 
                     b.Navigation("Employee");
                 });
 
-            modelBuilder.Entity("BlazorSyncfusion.Shared.Entities.Employee", b =>
+            modelBuilder.Entity("BlazorSyncfusion.Shared.Employee", b =>
                 {
                     b.Navigation("Notes");
                 });

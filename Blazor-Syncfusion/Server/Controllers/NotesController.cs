@@ -1,6 +1,6 @@
 ﻿using BlazorSyncfusion.Server.Data;
+using BlazorSyncfusion.Shared;
 using BlazorSyncfusion.Shared.Dtos;
-using BlazorSyncfusion.Shared.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
