@@ -1,4 +1,4 @@
-﻿namespace BlazorSyncfusion.Shared
+﻿namespace BlazorSyncfusion.Shared.Entities
 {
     public class DummyData
     {

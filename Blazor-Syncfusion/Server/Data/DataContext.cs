@@ -1,4 +1,5 @@
 ﻿using BlazorSyncfusion.Shared;
+using BlazorSyncfusion.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlazorSyncfusion.Server.Data
@@ -29,6 +30,7 @@ namespace BlazorSyncfusion.Server.Data
                     Title = "Lærer",
                     Mail = "keso@aspit.dk",
                     School = "AspIT Trekanten",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 },
@@ -41,6 +43,7 @@ namespace BlazorSyncfusion.Server.Data
                     Title = "Lærer",
                     Mail = "mara@aspit.dk",
                     School = "AspIT Trekanten",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 },
@@ -53,6 +56,7 @@ namespace BlazorSyncfusion.Server.Data
                     Title = "Lærer",
                     Mail = "degr@aspin.dk",
                     School = "AspIN",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 },
@@ -65,6 +69,7 @@ namespace BlazorSyncfusion.Server.Data
                     Title = "Lærer",
                     Mail = "jape@aspin.dk",
                     School = "AspIN",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 },
@@ -78,6 +83,7 @@ namespace BlazorSyncfusion.Server.Data
                     Mail = "jema@aspit.dk",
                     Phone = "+45 72 16 28 56",
                     School = "AspIT Trekanten",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 },
@@ -91,6 +97,7 @@ namespace BlazorSyncfusion.Server.Data
                     Mail = "hens@aspit.dk",
                     Phone = "+45 72 16 26 85",
                     School = "AspIT Trekanten",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 },
@@ -104,6 +111,7 @@ namespace BlazorSyncfusion.Server.Data
                     Mail = "oje@aspit.dk",
                     Phone = "+45 72 16 27 99",
                     School = "AspIT Trekanten",
+                    DepartmentId = 3,
                     IsEmployee = true,
                     BirthDate = new DateTime(1994, 03, 04)
                 }
@@ -113,9 +121,17 @@ namespace BlazorSyncfusion.Server.Data
                 new Note { Id = 1, EmployeeId = 5, Text = "ADHD child and very annoying." },
                 new Note { Id = 2, EmployeeId = 1, Text = "funny." }
                 );
+
+            modelBuilder.Entity<Department>().HasData(
+                new Department { Id = 1, Name = "AspIT Nordjylland", Latitude = 55.71046, Longitude = 9.52239 },
+                new Department { Id = 2, Name = "AspIT Østjylland", Latitude = 56.15065, Longitude = 10.20538 },
+                new Department { Id = 3, Name = "AspIT Trekanten", Latitude = 57.05501, Longitude = 9.90520 },
+                new Department { Id = 4, Name = "AspIN" }
+                );
         }
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Note> Notes { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }

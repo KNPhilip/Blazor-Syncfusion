@@ -1,0 +1,21 @@
+﻿@page "/map"
+@using BlazorSyncfusion.Shared.Entities;
+@inject HttpClient Http
+
+<h3>Kort</h3>
+
+
+
+@code {
+    public List<Department> Departments { get; set; } = new List<Department>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await Http.GetFromJsonAsync<List<Department>>("api/departments/map");
+        if (result is not null)
+        {
+            Departments = result;
+        }
+    }
+
+}
